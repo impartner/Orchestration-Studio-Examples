@@ -1,0 +1,94 @@
+{
+  "name": "send-slack-message",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/send-slack-message/src",
+  "tags": ["impartner:angular", "impartner:widgets", "impartner:custom"],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/send-slack-message",
+        "index": "apps/send-slack-message/src/index.html",
+        "main": "apps/send-slack-message/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/send-slack-message/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/send-slack-message/src/favicon.ico", "apps/send-slack-message/src/assets"],
+        "styles": ["apps/send-slack-message/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/send-slack-message/src/environments/impartner-environment.ts",
+              "with": "apps/send-slack-message/src/environments/impartner-environment.prod.ts"
+            }
+          ]
+        },
+        "development": {
+          "styles": ["node_modules/@impartner/design/scss/_impartner-hex.scss"]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "send-slack-message:build:production"
+        },
+        "development": {
+          "buildTarget": "send-slack-message:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/send-slack-message/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "send-slack-message:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/send-slack-message/**/*.ts", "apps/send-slack-message/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/send-slack-message/jest.config.ts"
+      }
+    },
+    "build-package": {
+      "executor": "@impartner/nx-angular:build-package",
+      "options": {
+        "buildDirectory": "dist/apps/send-slack-message"
+      },
+      "dependsOn": ["build"]
+    }
+  }
+}

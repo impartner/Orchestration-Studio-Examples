@@ -1,0 +1,34 @@
+{
+  "name": "send-slack-message",
+  "version": "0.0.0",
+  "impartner": {
+    "projectType": "widget",
+    "name": "send-slack-message",
+    "type": "custom.send-slack-message",
+    "isActive": true,
+    "author": "",
+    "description": "",
+    "localization": {},
+    "style": "BS5",
+    "availableIn": [
+      "Content",
+      "Dashboard",
+      "GeneralPurpose"
+    ],
+    "widgetComponents": [
+      {
+        "widgetMode": "View",
+        "tagId": "uw-send-slack-message-view",
+        "sourceUrl": ""
+      },
+      {
+        "widgetMode": "Edit",
+        "tagId": "uw-send-slack-message-edit",
+        "sourceUrl": ""
+      }
+    ],
+    "widgetIcons": [],
+    "mainIconName": "",
+    "manifestVersion": "1"
+  }
+}

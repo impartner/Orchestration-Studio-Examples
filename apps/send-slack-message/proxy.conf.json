@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://int-studio-master.impartner.live",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

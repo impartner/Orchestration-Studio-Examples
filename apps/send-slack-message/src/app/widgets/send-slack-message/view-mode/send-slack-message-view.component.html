@@ -1,0 +1,32 @@
+@switch (step) { @case ('start') {
+<div>
+  <impdc-form-field>
+    <impdc-label>Slack Message</impdc-label>
+    <textarea
+      impdcInput
+      [(ngModel)]="message"
+      [required]="true"
+      placeholder="Send us a message"></textarea>
+  </impdc-form-field>
+  <p><button impdcButton (click)="sendMessage()">Send!</button></p>
+</div>
+} @case ('sending') {
+<p>Sending...</p>
+<impdc-spinner></impdc-spinner>
+} @case ('done') {
+<impdc-alert
+  [show]="true"
+  theme="success"
+  headingText="Message sent! We will get back to you via e-mail in 24 hours."
+  (dismiss)="reset()">
+  <a action (click)="reset()">Send another!</a>
+</impdc-alert>
+} @case ('error') {
+<impdc-alert
+  [show]="true"
+  theme="danger"
+  [headingText]="'Uh oh, something went wrong. Your message was not sent :(. Give it another go!'"
+  (dismiss)="step = 'start'">
+  <a action (click)="step = 'start'">Try again!</a>
+</impdc-alert>
+} }
